@@ -1,21 +1,22 @@
-import useUserState from './Hooks/UserHook'
+import useTableState from './Hooks/TableDataHook'
 import TableComponent from './Page/Components/TableComponent'
+import USER_LIST, {User} from "./Types/UserType"
 import './Styles/App.css'
 
 function App() {
     const {
-        getUsers,
+        getElements,
         limit, offset,
-        handleNext, handlePrev, addUser
-    } = useUserState()
-    const l = getUsers(offset, limit)
+        handleNext, handlePrev, addElement
+    } = useTableState<User>(USER_LIST)
+    const elements = getElements(offset, limit)
     return(
         <>
             <h1>Users</h1>
-            <TableComponent users={l}/>
+            <TableComponent users={elements}/>
             <div className=''>
                 <button onClick={handlePrev} disabled={offset === 0}>prev</button>
-                <button onClick={handleNext} disabled={l.length === 0}>next</button>
+                <button onClick={handleNext} disabled={elements.length === 0}>next</button>
             </div>
         </>
     )

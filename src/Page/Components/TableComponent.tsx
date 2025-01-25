@@ -10,26 +10,41 @@ export default function TableComponent({users}: Props) {
             <h1>No more results</h1>
         )
     }
+    const keys: string[] = Object.keys(users[0])
+    function rows(user: User) {
+        const values = Object.values(user)
+        return(
+            <>
+                {
+                    values.splice(1)
+                    .map((u, i) => (
+                        <td key={i}>{u}</td>
+                    ))
+                }
+            </>
+        )
+    }
 
     return (
         <table>
             <thead>
-                <tr>
-                    <th>name</th>
-                    <th>age</th>
-                    <th>rol</th>
+                <tr> 
+                    {
+                        keys.splice(1)
+                        .map((k, i) => (
+                                <th key={i}>{k}</th>
+                        ))
+                    }
                 </tr>
             </thead>
             <tbody>
-                {
-                    users.map((u) => (
-                        <tr key={u.id_pk}>
-                            <td>{u.name}</td>
-                            <td>{u.age}</td>
-                            <td>{u.rol}</td>
-                        </tr>
-                    ))
-                }
+                <tr>
+                    {
+                        users.map((u) => (
+                            rows(u)
+                        ))
+                    }
+                </tr>
             </tbody>
         </table>
     )
