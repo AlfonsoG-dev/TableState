@@ -14,7 +14,7 @@ function App() {
         <>
             <h1>Users</h1>
             <TableComponent users={elements}/>
-            <div className=''>
+            <div className='options'>
                 <button onClick={handlePrev} disabled={offset === 0}>prev</button>
                 <button onClick={handleNext} disabled={elements.length === 0}>next</button>
             </div>

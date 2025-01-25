@@ -4,3 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
+.options {
+    padding: 10px;
+    margin: 12px;
+    button {
+        font-size: 1.1em;
+    }
+}
