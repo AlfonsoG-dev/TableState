@@ -1,13 +1,16 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-.options {
-    padding: 10px;
-    margin: 12px;
-    button {
-        font-size: 1.1em;
+.container {
+    h1 {
+        text-align: center;
+    }
+    .options {
+        padding: 10px;
+        margin: 12px;
+        text-align: center;
+        button {
+            font-size: 1.1em;
+        }
+    }
+    .btn-add {
+        margin: 10px;
     }
 }
