@@ -1,5 +1,5 @@
 import { useState } from "react"
-const DEFAULT_LIMIT: number = 1
+const DEFAULT_LIMIT: number = 2
 export default function useTableState<T>(listT: Array<T>) {
     const [elements, setElements] = useState<Array<T>>(listT)
     const [limit, setLimit] = useState(DEFAULT_LIMIT)

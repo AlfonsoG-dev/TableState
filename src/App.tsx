@@ -13,7 +13,7 @@ function App() {
     return(
         <>
             <h1>Users</h1>
-            <TableComponent users={elements}/>
+            <TableComponent<User> elements={elements} ignore={['id_pk']}/>
             <div className='options'>
                 <button onClick={handlePrev} disabled={offset === 0}>prev</button>
                 <button onClick={handleNext} disabled={elements.length === 0}>next</button>

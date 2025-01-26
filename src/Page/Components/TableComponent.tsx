@@ -1,51 +1,58 @@
 import '../../Styles/table.css'
-import { User } from '../../Types/UserType'
 
-interface Props {
-    users: User[]
+interface Props<T> {
+    elements: T[],
+    ignore: string[]
 }
-export default function TableComponent({users}: Props) {
-    if(users.length === 0) {
+export default function TableComponent<T extends Object>({elements, ignore}: Props<T>) {
+    if(elements.length === 0) {
         return (
             <h1>No more results</h1>
         )
     }
-    const keys: string[] = Object.keys(users[0])
-    function rows(user: User) {
-        const values = Object.values(user)
+    function columns() {
+        const e: T = elements[0]
+        const keys = Object.keys(e).filter(k => !ignore.includes(k))
         return(
-            <>
+            <tr key={"cols"}>
                 {
-                    values.splice(1)
-                    .map((u, i) => (
-                        <td key={i}>{u}</td>
+                    keys
+                    .map((k, i) => (
+                        <th key={i}>{k}</th>
                     ))
                 }
-            </>
+            </tr>
+        )
+    }
+    function rows(element: any, index: number) {
+        const keys = Object.keys(element).filter(k => !ignore.includes(k))
+        return(
+            <tr key={index}>
+                {
+                    keys
+                    .map((k, i) => (
+                        <td key={i}>{element[k]}</td>
+                    ))
+                }
+            </tr>
         )
     }
 
     return (
         <table>
             <thead>
-                <tr> 
-                    {
-                        keys.splice(1)
-                        .map((k, i) => (
-                                <th key={i}>{k}</th>
-                        ))
-                    }
-                </tr>
+                {
+                    columns()
+                }
             </thead>
             <tbody>
-                <tr>
-                    {
-                        users.map((u) => (
-                            rows(u)
-                        ))
-                    }
-                </tr>
+                {
+                    elements.map((u, i) => (
+                        rows(u, i)
+                    ))
+                }
             </tbody>
         </table>
     )
 }
+
