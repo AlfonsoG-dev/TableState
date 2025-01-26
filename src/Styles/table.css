@@ -17,4 +17,15 @@ table {
         padding: 8px;
         border: 1px solid #ddd;
     }
+    .tb-option {
+        text-align: center;
+        button {
+            font-size: 0.9em;
+            border: none;
+            background-color: white;
+        }
+        button:hover {
+            color: red;
+        }
+    }
 }

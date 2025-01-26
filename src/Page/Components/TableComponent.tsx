@@ -35,7 +35,7 @@ export default function TableComponent<T extends Object>({elements, ignore}: Pro
                         <td key={i}>{element[k]}</td>
                     ))
                 }
-                <td>
+                <td className='tb-option'>
                     <button>remove</button>
                 </td>
             </tr>
