@@ -23,6 +23,14 @@ const USER_LIST: User[] = [
         rol: "personal",
         create_at: "03-05-1998",
         update_at: null
+    },
+    {
+        id_pk: 3,
+        name: "Patricio",
+        age: 30,
+        rol: "personal",
+        create_at: "21-05-1998",
+        update_at: null
     }
 ]
 export default USER_LIST;
