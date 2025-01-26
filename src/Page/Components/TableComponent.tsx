@@ -21,6 +21,7 @@ export default function TableComponent<T extends Object>({elements, ignore}: Pro
                         <th key={i}>{k}</th>
                     ))
                 }
+                <th>Options</th>
             </tr>
         )
     }
@@ -34,6 +35,10 @@ export default function TableComponent<T extends Object>({elements, ignore}: Pro
                         <td key={i}>{element[k]}</td>
                     ))
                 }
+                <td>
+                    <button>add</button>
+                    <button>remove</button>
+                </td>
             </tr>
         )
     }
@@ -47,7 +52,8 @@ export default function TableComponent<T extends Object>({elements, ignore}: Pro
             </thead>
             <tbody>
                 {
-                    elements.map((u, i) => (
+                    elements
+                    .map((u, i) => (
                         rows(u, i)
                     ))
                 }
