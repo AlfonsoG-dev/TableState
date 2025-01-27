@@ -28,9 +28,9 @@ export default function useTableState<T>(listT: Array<T>) {
             setOffset(offset - DEFAULT_LIMIT)
         }
     }
-    function addElement(user: T) {
+    function addElement(element: T) {
         const c = [...elements]
-        c.push(user)
+        c.push(element)
         setElements(c)
         return elements.length
     }

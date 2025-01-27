@@ -10,10 +10,21 @@ function App() {
         handleNext, handlePrev, addElement
     } = useTableState<User>(USER_LIST)
     const elements = getElements(offset, limit)
+    function handleAddUser() {
+        const u: User = {
+            id_pk: USER_LIST.length+1,
+            name: 'Alvaro',
+            age: 30,
+            rol: 'admin',
+            create_at: new Date(Date.now()).toLocaleDateString(),
+            update_at: null
+        }
+        addElement(u)
+    }
     return(
         <div className='container'>
             <h1>Users</h1>
-            <button className='btn-add'>Add</button>
+            <button className='btn-add' onClick={handleAddUser}>Add</button>
             <TableComponent<User> elements={elements} ignore={['id_pk']}/>
             <div className='options'>
                 <button onClick={handlePrev} disabled={offset === 0}>prev</button>
