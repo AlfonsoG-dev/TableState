@@ -1,7 +1,7 @@
 import { useState } from "react"
 const DEFAULT_LIMIT: number = 2
 export default function useTableState<T>(listT: Array<T>) {
-    const [elements, setElements] = useState<Array<T>>(listT)
+    const [elements, setElements] = useState<T[]>(listT)
     const [limit, setLimit] = useState(DEFAULT_LIMIT)
     const [offset, setOffset] = useState(0)
 
