@@ -13,7 +13,7 @@ const USER_LIST: User[] = [
         name: "Pablo",
         age: 30,
         rol: "admin",
-        create_at: "21-10-1980",
+        create_at: "21/10/1980",
         update_at: null
     },
     {
@@ -21,7 +21,7 @@ const USER_LIST: User[] = [
         name: "Luca",
         age: 27,
         rol: "personal",
-        create_at: "03-05-1998",
+        create_at: "03/05/1998",
         update_at: null
     },
     {
@@ -29,7 +29,7 @@ const USER_LIST: User[] = [
         name: "Patricio",
         age: 30,
         rol: "personal",
-        create_at: "21-05-1998",
+        create_at: "21/05/1998",
         update_at: null
     }
 ]

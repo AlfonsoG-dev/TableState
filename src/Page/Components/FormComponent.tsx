@@ -1,4 +1,5 @@
 import {ChangeEventHandler, FormEventHandler} from "react"
+import getTitle from "../../Utils/Title"
 interface Props<T> {
     element: T
     ignore: string[],
@@ -25,21 +26,38 @@ export default function FormComponent<T extends Object>({element, ignore, change
         <form className='form-container' onSubmit={submitHandler}>
             {
                 getData().keys.map((k, i) => (
-                    <label key={i}>
-                        {k}
-                        <input
-                            key={k}
-                            type={typeof getData().values[i]}
-                            name={k}
-                            defaultValue={getData().values[i]}
-                            onChange={changeHandler}
-                        />
-                    </label>
+                    <FormField
+                        key={k}
+                        title={k}
+                        index={i}
+                        value={getData().values[i]}
+                        changeHandler={changeHandler}
+                    />
                 ))
             }
             <div className='btn-options'>
                 <button type="submit">Guardar</button>
             </div>
         </form >
+    )
+}
+interface FormProps {
+    title: string,
+    index: number,
+    value: any,
+    changeHandler: ChangeEventHandler<HTMLInputElement>
+}
+function FormField({title, value, changeHandler}: FormProps) {
+    return(
+        <label>
+            {getTitle(title)}
+            <input
+                type={typeof value}
+                name={title}
+                defaultValue={value}
+                onChange={changeHandler}
+                required={true}
+            />
+        </label>
     )
 }
