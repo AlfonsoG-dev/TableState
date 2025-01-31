@@ -10,6 +10,7 @@
 - [typescript](https://devdocs.io/typescript/)
 - [react](https://react.dev/reference/react)
 - [generics](https://www.freecodecamp.org/news/typescript-generics-with-functional-react-components/)
+- [reusable components](https://www.youtube.com/watch?v=O02GFZrZg3E&list=WL&index=2)
 
 ---
 
