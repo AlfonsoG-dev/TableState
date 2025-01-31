@@ -1,5 +1,5 @@
 // Dependencies
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, ChangeEvent, FormEvent, ReactNode } from 'react'
 
 // Components
 import TableComponent from './Page/Components/TableComponent'
@@ -15,6 +15,16 @@ import USER_LIST, {User} from "./Types/UserType"
 import './Styles/App.css'
 
 function App() {
+
+    const columns: Array<{
+        key: keyof User;
+        header: string;
+        renderer?: (value: User[keyof User]) => ReactNode;
+    }> = [
+        {key: 'name', header: 'Name'},
+        {key: 'age', header: 'Age'},
+        {key: 'rol', header: 'Rol', renderer: (value) => (<p style={{color: 'red'}}>{value}</p>)},
+    ]
     const {
         getElements,
         limit, offset,
@@ -51,7 +61,7 @@ function App() {
                 submitHandler={handleAddUser}
             />
             <h1>Users</h1>
-            <TableComponent<User> elements={elements} ignore={['id_pk']}/>
+            <TableComponent<User> elements={elements} columns={columns}/>
             <div className='options'>
                 <button onClick={handlePrev} disabled={offset === 0}>prev</button>
                 <button onClick={handleNext} disabled={elements.length === 0}>next</button>

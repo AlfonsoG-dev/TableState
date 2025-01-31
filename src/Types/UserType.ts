@@ -33,4 +33,5 @@ const USER_LIST: User[] = [
         update_at: null
     }
 ]
+
 export default USER_LIST;

@@ -1,59 +1,53 @@
+import {ReactNode} from 'react';
 import '../../Styles/table.css'
 
-interface Props<T> {
-    elements: T[],
-    ignore: string[]
+type TableProps = {
+    id_pk: number | string
+
 }
-export default function TableComponent<T extends Object>({elements, ignore}: Props<T>) {
+type Column<T> = {
+    key: keyof T;
+    header: string;
+    renderer?: (value: T[keyof T]) => ReactNode;
+}
+
+interface Props<T> {
+    elements: Array<T>
+    columns: Array<Column<T>>
+}
+export default function TableComponent<T extends TableProps>({elements, columns}: Props<T>) {
     if(elements.length === 0) {
         return (
             <h1>No more results</h1>
         )
     }
-    function columns() {
-        const e: T = elements[0]
-        const keys = Object.keys(e).filter(k => !ignore.includes(k))
-        return(
-            <tr key={"cols"}>
-                {
-                    keys
-                    .map((k, i) => (
-                        <th key={i}>{k}</th>
-                    ))
-                }
-                <th>Options</th>
-            </tr>
-        )
-    }
-    function rows(element: any, index: number) {
-        const keys = Object.keys(element).filter(k => !ignore.includes(k))
-        return(
-            <tr key={index}>
-                {
-                    keys
-                    .map((k, i) => (
-                        <td key={i}>{element[k]}</td>
-                    ))
-                }
-                <td className='tb-option'>
-                    <button>remove</button>
-                </td>
-            </tr>
-        )
-    }
-
     return (
         <table>
             <thead>
-                {
-                    columns()
-                }
+                <tr>
+                    {
+                        columns.map((c) => (
+                            <th key={String(c.key)}>{c.header}</th>
+                        ))
+                    }
+                </tr>
             </thead>
             <tbody>
                 {
-                    elements
-                    .map((u, i) => (
-                        rows(u, i)
+                    elements.map((e) => (
+                        <tr key={e.id_pk}>
+                            {
+                                columns.map((c) => (
+                                    <td key={String(c.key)}>
+                                        {
+                                            c.renderer
+                                            ? c.renderer(e[c.key])
+                                            : String(e[c.key])
+                                        }
+                                    </td>
+                                ))
+                            }
+                        </tr>
                     ))
                 }
             </tbody>
