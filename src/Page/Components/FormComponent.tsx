@@ -6,7 +6,14 @@ interface Props<T> {
     changeHandler: ChangeEventHandler<HTMLInputElement>
     submitHandler: FormEventHandler
 }
-export default function FormComponent<T extends Object>({element, ignore, changeHandler, submitHandler}: Props<T>) {
+
+interface FormProps {
+    title: string,
+    index: number,
+    value: any,
+    changeHandler: ChangeEventHandler<HTMLInputElement>
+}
+export default function FormComponent<T extends Object>({element, ignore, changeHandler, submitHandler}: Readonly<Props<T>>) {
     function getData() {
         const data = Object.entries(element)
         let keys = []
@@ -41,13 +48,7 @@ export default function FormComponent<T extends Object>({element, ignore, change
         </form >
     )
 }
-interface FormProps {
-    title: string,
-    index: number,
-    value: any,
-    changeHandler: ChangeEventHandler<HTMLInputElement>
-}
-function FormField({title, value, changeHandler}: FormProps) {
+function FormField({title, value, changeHandler}: Readonly<FormProps>) {
     return(
         <label>
             {getTitle(title)}

@@ -15,7 +15,7 @@ interface Props<T> {
     elements: Array<T>
     columns: Array<Column<T>>
 }
-export default function TableComponent<T extends TableProps>({elements, columns}: Props<T>) {
+export default function TableComponent<T extends TableProps>({elements, columns}: Readonly<Props<T>>) {
     if(elements.length === 0) {
         return (
             <h1>No more results</h1>
